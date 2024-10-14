@@ -1,0 +1,347 @@
+/* 全体のレイアウト */ 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: hsl(208, 59%, 81%); /* 薄い水色で自然を表現 */
+    background-image: url('/static/images/nature-background.jpg'); /* 山や自然の背景画像 */
+    background-size: cover;
+    background-position: center;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1); /* 薄い白のオーバーレイ */
+    pointer-events: none; /* クリックなどのイベントを無効にする */
+}
+
+
+/* メインコンテンツの中央寄せ */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+/* 投稿リストのスタイルを調整 */
+.centered-container {
+    max-width: 800px; /* コンテンツの最大幅を設定 */
+    margin: 0 auto; /* 自動で左右のマージンを設定し、中央寄せ */
+    padding: 20px; /* パディングを追加して余白を設定 */
+    text-align: center; /* テキストを中央に揃える */
+}
+
+/* ナビゲーションボタン */
+nav a {
+    text-decoration: none;
+    color: #006400; /* 濃い緑で自然のイメージ */
+    background-color: #90ee90; /* 薄い緑 */
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 5px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: #32cd32; /* マウスオーバーで少し濃い緑 */
+}
+
+/* ヘッダー */
+header {
+    text-align: center;
+    padding: 50px;
+    background-color: rgba(0, 100, 0, 0.7); /* 半透明の濃い緑 */
+    color: white;
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+/* フォーム */
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+form input, form textarea {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #006400;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #32cd32;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* 投稿のスタイル */
+.post {
+    width: 100%; /* 幅を100%に設定 */
+    max-width: 600px; /* 最大幅を設定 */
+    margin: 10px 0; /* マージンを追加 */
+    border: 1px solid #ddd; /* 枠線を追加 */
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* 背景色を追加 */
+}
+
+.post h2 {
+    margin-top: 0;
+    color: #006400;
+}
+
+.post p {
+    font-size: 1.1em;
+    line-height: 1.5em;
+}
+
+.post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* コメント全体のスタイルを統一 */
+.comment {
+    width: 100%;  /* 幅を100%に統一 */
+    max-width: 800px;  /* 最大幅を設定 */
+    margin: 20px auto;  /* 上下に余白を追加し、中央寄せ */
+    padding: 15px;
+    background-color: #f9f9f9;  /* 背景色を追加 */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;  /* パディングも含めて幅を調整 */
+}
+
+/* コメント主と投稿日をそれぞれ分けて改行 */
+.comment-author {
+    display: block; /* コメント主をブロック要素にして改行 */
+    font-weight: bold;
+}
+
+.comment-date {
+    display: block; /* 投稿日もブロック要素にして改行 */
+    color: #777; /* 投稿日を少し薄い色に */
+    text-align: right; /* 右揃えにする */
+}
+
+/* コメント主と投稿日を同じ行に */
+.comment-details {
+    display: flex;
+    justify-content: space-between;  /* 左右に配置 */
+    width: 100%;  /* 幅を100%に設定 */
+    margin-top: 10px;  /* コメントと詳細の間に余白を追加 */
+}
+
+.comment img {
+    max-width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* コメント内容も同じ幅に統一 */
+.comment p {
+    width: 100%;  /* コメント内容の幅を100%に統一 */
+    margin: 0;
+    line-height: 1.5;
+    word-wrap: break-word;  /* 長い単語を折り返す */
+}
+
+/* ナビゲーションのリストスタイル */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;  /* 横並びの中央寄せ */
+}
+
+/* すべてのul要素のリストスタイルを無効にする */
+ul {
+    list-style-type: none;  /* 黒い点を消す */
+    padding-left: 0;        /* 左側の余白もなくす */
+}
+
+/* 必要に応じて、liに追加のスタイルを設定 */
+ul li {
+    margin-bottom: 10px;  /* 各リスト項目の下に余白を追加 */
+}
+
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none; /* アンダーラインを削除 */
+    color: #000;          /* テキストの色を黒に設定 */
+}
+
+/* css/style.css */
+.post-author {
+    font-weight: bold;
+    color: #333; /* 投稿者名の色 */
+}
+
+.post-date {
+    color: #777; /* 投稿日の色 */
+}
+
+/* 画像表示の調整 */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.messages {
+    color: #ff0000; /* メッセージの色を赤に設定 */
+    text-align: center; /* 中央揃え */
+    margin-bottom: 20px; /* メッセージと他のコンテンツの間にスペースを追加 */
+}
+
+
+/* 投稿リストやフォームの中央寄せ */
+.post, form {
+    margin: 0 auto;  /* 横方向に中央寄せ */
+    max-width: 600px;  /* コンテンツの最大幅を設定 */
+}
+
+/* フォーム要素のスタイル */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* フォームの要素を中央に揃える */
+}
+
+form input, form textarea, form button {
+    width: 100%;  /* フォーム要素を全幅に設定 */
+    max-width: 600px;  /* 最大幅を設定 */
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.center-text {
+    text-align: center; /* テキストを中央揃えに */
+}
+/* メッセージのリストスタイルを無効にする */
+.messages {
+    list-style-type: none;  /* 黒い点を消す */
+    padding-left: 0;        /* 左側の余白もなくす */
+}
+
+.messages p {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* エラーメッセージのスタイル */
+.messages p.error {
+    color: #ff0000;  /* エラーメッセージを強調する */
+    background-color: #ffe6e6;  /* 背景色を薄い赤に */
+    border: 1px solid #ff0000;  /* 赤い枠線で囲む */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+/* 投稿の詳細内、投稿者名と投稿日を右寄せ */
+.post-author, .post-date {
+    display: inline-block;
+    margin: 0;
+    padding: 0 5px;
+    color: #333;
+}
+
+.post-author {
+    float: left; /* 投稿者名は左寄せ */
+}
+
+.post-date {
+    float: right; /* 投稿日を右寄せ */
+}
+
+
+
+/* コメント編集・削除ボタンのスタイルを統一 */
+.comment-edit-button,
+.comment-delete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    text-decoration: none; /* 下線を削除 */
+    color: white;
+    background-color: #57c778;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    width: auto; /* 幅を自動調整する */
+}
+
+/* ホバー時のスタイル */
+.comment-edit-button:hover,
+.comment-delete-button:hover {
+    background-color: #b9a239;
+}
+
+/* フォームのボタンもリンクと同様のスタイルに */
+form button.comment-delete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    text-decoration: none;
+    color: white;
+    background-color: #19af14;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto; /* 幅を自動調整する */
+}
+
+form button.comment-delete-button:hover {
+    background-color: #00b36e;
+}
+/* コメントの編集・削除ボタンを横並びにする */
+.comment-actions {
+    display: flex; /* フレックスボックスを使用して横並びに */
+    justify-content: flex-end; /* ボタンを右揃えに */
+    gap: 10px; /* ボタンの間に余白を追加 */
+}

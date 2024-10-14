@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="center-text">404 - ページが見つかりません</h1>
+    <p class="center-text">お探しのページは存在しないか、移動した可能性があります。</p>
+    <a href="{% url 'home' %}">ホームに戻る</a>
+{% endblock %}

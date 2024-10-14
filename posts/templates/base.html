@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title left>山さんぽ</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header>
+    <h1>山さんぽ</h1>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'post_list' %}">投稿一覧</a></li>
+                <li><a href="{% url 'create_post' %}">新規投稿</a></li>
+                <li><a href="{% url 'user_page' %}">ユーザーページ</a></li>
+                <li><a href="{% url 'logout' %}">ログアウト</a></li>
+            {% else %}
+                <li><a href="{% url 'home' %}">ホーム</a></li>
+                <li><a href="{% url 'login' %}">ログイン</a></li>
+                <li><a href="{% url 'register' %}">新規登録</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>

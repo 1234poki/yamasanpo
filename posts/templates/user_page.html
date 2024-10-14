@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="centered-container">
+    <h2>ようこそ、{{ request.user.username }}さんのページです！</h2>
+
+    <h3>自分の投稿</h3>
+    <ul style="list-style-type: none; padding-left: 0;">
+        {% for post in user_posts %}
+            <div class="post" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+                <p style="text-align: left;">{{ post.contents|linebreaksbr }}</p>
+                {% if post.picture %}
+                    <img src="{{ post.picture.url }}" alt="投稿画像" style="max-width: 100%; height: auto;">
+                {% endif %}
+                <p style="text-align: right;">投稿者: {{ post.user.username }} | 投稿日: {{ post.created_at }}</p>
+                <a href="{% url 'edit_post' post.id %}" class="comment-edit-button">投稿を編集</a>
+                <a href="{% url 'delete_post' post.id %}" class="comment-delete-button">投稿を削除</a>
+                {% for comment in post.comments.all %}
+                    <div class="comment" style="padding: 10px; border-top: 1px solid #ddd; margin-top: 10px;">
+                        <p>{{ comment.content }}</p>
+                        <div class="comment-details" style="display: flex; justify-content: space-between;">
+                            <span>{{ comment.user.username }}</span>
+                            <span>投稿日: {{ comment.created_at }}</span>
+                        </div>
+                        {% if comment.user == request.user %}
+                            <a href="{% url 'edit_comment' comment.id %}" class="comment-edit-button">コメントを編集</a>
+                            <form method="POST" action="{% url 'delete_comment' comment.id %}" onsubmit="return confirm('本当にこのコメントを削除しますか？');" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="comment-delete-button">コメント削除</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% empty %}
+            <p>投稿がありません。</p>
+        {% endfor %}
+    </ul>
+
+    <h3>コメントした投稿</h3>
+    <ul style="list-style-type: none; padding-left: 0;">
+        {% for post in commented_posts %}
+            <div class="post" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+                <p style="text-align: left;">{{ post.contents|linebreaksbr }}</p>
+                {% if post.picture %}
+                    <img src="{{ post.picture.url }}" alt="投稿画像" style="max-width: 100%; height: auto;">
+                {% endif %}
+                <p style="text-align: right;">投稿者: {{ post.user.username }} | 投稿日: {{ post.created_at }}</p>
+                <a href="{% url 'post_detail' post.id %}" class="comment-edit-button">投稿を表示</a>
+            </div>
+        {% empty %}
+            <p>コメントした投稿がありません。</p>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'edit_user' %}">ユーザー情報を編集</a>
+    <a href="{% url 'home' %}">戻る</a>
+</div>
+{% endblock %}

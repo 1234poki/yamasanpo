@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="centered-container">
+    <h1>投稿一覧</h1>
+
+    {% for post in posts %}
+        <div class="post"> 
+            <p style="text-align: left;">{{ post.contents|linebreaksbr }}</p>
+            {% if post.picture %}
+                <img src="{{ post.picture.url }}" alt="投稿画像" style="max-width: 100%; height: auto;">
+            {% endif %}
+                <p style="text-align: right;">投稿者: {{ post.user.username }}|<a href="{% url 'post_detail' post.id %}">投稿日: {{ post.created_at }}</a></p>
+            {% if post.comments.count > 0 %}
+                <p style="color: green;">コメント {{ post.comments.count }} 件あります</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>投稿がありません。</p>
+    {% endfor %}
+</div>
+{% endblock %}
